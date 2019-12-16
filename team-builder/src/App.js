@@ -1,24 +1,57 @@
-import React from 'react';
+import React, { useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [state, setState] = useState({
+    member: "",
+    email: "",
+    role: ""
+  });
+
+  const stateFormChange = e => {
+    setState({
+      ...state,
+      [e.target.member]: e.target.value
+    });
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>Welcome to Work</header>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Members:
+          <input
+            type="text"
+            name="member"
+            placeholder="Enter Member Name "
+            onChange={stateFormChange}
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="text"
+            name="email"
+            placeholder="Enter Email"
+            onChange={stateFormChange}
+          />
+        </label>
+        <label>
+          Role:
+          <input
+            type="text"
+            name="role"
+            placeholder="Enter Role"
+            onChange={stateFormChange}
+          />
+        </label>
+        <input type="submit" />
+      </form>
     </div>
   );
 }
